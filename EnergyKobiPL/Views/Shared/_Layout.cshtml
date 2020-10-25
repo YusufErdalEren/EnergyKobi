@@ -1,42 +1,138 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="tr">
+
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="INSPIRO" />
+    <meta name="description" content="Themeforest Template Polo, html template">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Document title -->
+    <title>Enerjikobi</title>
+    <!-- Stylesheets & Fonts -->
+
+    <link href="~/Content/plugins.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <link href="~/Scripts/plugins/fontawesome/css/fontawesome.min.css" rel="stylesheet" />
+
+    <!-- Template color -->
+    @*<link href="css/color-variations/green.css" rel="stylesheet" type="text/css" media="screen">
+        <link href="css/color-variations/green.css" rel="stylesheet" type="text/css" media="screen">*@
+
+
+    <!-- CSS real-estate STYLE -->
+    <link href="~/Content/real-estate-style.css" rel="stylesheet" type="text/css" media="screen" />
+
 </head>
+
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
+
+    <!-- Body Inner -->
+    <div class="body-inner">
+
+        <!-- Header -->
+        <header id="header" class="header-modern">
+            <div class="header-inner">
+                <div class="container">
+                    <!--Logo-->
+                    <div id="logo">
+                        <a href="/Home/Index">
+                            <span class="logo-default">EnerjiKobi</span>
+                            <span class="logo-dark">EnerjiKobi</span>
+                        </a>
+                    </div>
+                    <!--End: Logo-->
+                    
+                    <!--Header Extras-->
+                    <div class="header-extras">
+                        <ul>
+                            <li>
+                                <!--search icon-->
+                                <a id="btn-search" href="#"> <i class="icon-search1"></i></a>
+                                <!--end: search icon-->
+                            </li>
+                            <li>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--end: Header Extras-->
+                    <!--Navigation Resposnive Trigger-->
+                    <div id="mainMenu-trigger">
+                        <button class="lines-button x"> <span class="lines"></span> </button>
+                    </div>
+                    <!--end: Navigation Resposnive Trigger-->
+                    <!--Navigation-->
+                    <div id="mainMenu" class="light">
+                        <div class="container">
+                            <nav>
+                                <ul>
+                                    <li><a href="Home/Index">Home</a></li>
+                                    <li class="dropdown"> <a href="#">Layout</a></li>
+                                    <li class="dropdown"> <a href="#">Features</a></li>
+                                    <li class="dropdown mega-menu-item"><a href="#">Elements</a> </li>
+                                    <li class="dropdown"> <a href="#">Pages</a></li>
+                                    <li class="dropdown mega-menu-item"> <a href="#">Portfolio</a></li>
+                                    <li class="dropdown mega-menu-item"> <a href="#">Blog</a></li>
+                                    <li class="dropdown mega-menu-item"> <a href="~/Login/Login">Giriş</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <!--end: Navigation-->
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+        </header>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    <div>
+        @RenderBody()
+    </div>
+    <!-- end: Header -->
+    <!-- Inspiro Slider -->
+    <!--Plugins-->
+    <script src="~/Scripts/jquery.js"></script>
+    <script src="~/Scripts/plugins.js"></script>
+    <!--Template functions-->
+    <script src="~/Scripts/functions.js"></script>
+
+    @*<link href="~/Scripts/plugins/dropzone/dropzone.css" rel="stylesheet" />
+    <script src="~/Scripts/plugins/dropzone/dropzone.js"></script>
+    <script>
+        Dropzone.autoDiscover = false;
+        //Form 1
+        var form2 = $('#fileUpload1');
+        form2.dropzone({
+            url: "http://polo/files/post",
+            addRemoveLinks: true,
+            maxFiles: 1,
+            maxFilesize: 10,
+            acceptedFiles: "image/*",
+        });
+        //Form 2
+        var form2 = $('#fileUpload2');
+        form2.dropzone({
+            url: "http://polo/files/post",
+            maxFilesize: 5,
+            acceptedFiles: "image/*",
+            previewsContainer: "#formFiles2",
+            previewTemplate: $("#formTemplate2").html(),
+        });
+        //Form 3
+        var form3 = $('#fileUpload3');
+        form3.dropzone({
+            url: "http://polo/files/post",
+            maxFilesize: 5,
+            acceptedFiles: "image/*",
+            previewsContainer: "#formFiles3",
+            previewTemplate: $("#formTemplate3").html(),
+            clickable: ".dropzone-attach-files"
+        });
+    </script>*@
+
+
+
 </body>
+
 </html>

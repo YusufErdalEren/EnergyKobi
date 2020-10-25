@@ -1,5 +1,8 @@
-﻿using System;
+﻿using EnergyKobiPL.DBContext;
+using EnergyKobiPL.Models;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -13,18 +16,54 @@ namespace EnergyKobiPL.Controllers
             return View();
         }
 
-        public ActionResult About()
+        [HttpPost]
+        public ActionResult CustomerRequest(RegisterRequestModel model)
         {
-            ViewBag.Message = "Your application description page.";
+            using (TestElectricityKobiEntities db = new TestElectricityKobiEntities())
+            {
 
-            return View();
-        }
+                byte[] billDocumentBinary;
+                string guidID = Guid.NewGuid().ToString();
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
+                if (model != null && model.ElectricityBillDocument != null)
+                {
+                    try
+                    {
+                        using (Stream inputStream = model.ElectricityBillDocument.InputStream)
+                        {
+                            MemoryStream memoryStream = inputStream as MemoryStream;
+                            if (memoryStream == null)
+                            {
+                                memoryStream = new MemoryStream();
+                                inputStream.CopyTo(memoryStream);
+                            }
+                            billDocumentBinary = memoryStream.ToArray();
+                        }
 
-            return View();
+                        db.BillDocuments.Add(new BillDocument { Id = guidID, FileName = model.ElectricityBillDocument.FileName, FileBinary = billDocumentBinary });
+                        db.SaveChanges();
+                    }
+                    catch (Exception ex)
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+
+                    db.CustomerRequests.Add(new CustomerRequest
+                    {
+                        FirstName = model.FirstName,
+                        LastName = model.LastName,
+                        PhoneNumber = model.PhoneNumber,
+                        CompanyName = model.CompanyName,
+                        SubscriberGroupId = model.SubscriberGroupId,
+                        BillDocumentId = guidID
+                    });
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index", "Home");
+                }
+
+                return RedirectToAction("Index", "Home");
+            }
         }
     }
 }

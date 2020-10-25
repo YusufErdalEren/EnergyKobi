@@ -1,0 +1,80 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="INSPIRO" />
+    <meta name="description" content="Themeforest Template Polo, html template">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Document title -->
+    <!-- Stylesheets & Fonts -->
+    <link href="~/Content/plugins.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <link href="~/Scripts/plugins/fontawesome/css/fontawesome.min.css" rel="stylesheet" />
+
+</head>
+
+<body>
+    <!-- Body Inner -->
+    <div class="body-inner">
+        <!-- Section -->
+        <section class="fullscreen" style="background-image: url(Images/Login/1.jpg))">
+            <div class="container">
+                <div>
+                    <div class="text-center m-b-30">
+                        <a href="Home/Index" class="logo">
+
+                        </a>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-5 center p-50 background-white b-r-6">
+                            <h3>Hesabınıza Giriş Yapın</h3>
+                            @using (Html.BeginForm("Login", "Login", FormMethod.Post))
+                            {
+                                <div class="form-group">
+                                    <label class="sr-only">Email veya Kullanıcı Adı</label>
+                                    <input type="text" class="form-control" name="UserName" placeholder="Email veya Kullanıcı Adı">
+                                </div>
+                                <div class="form-group m-b-5">
+                                    <label class="sr-only">Şifre</label>
+                                    <input type="password" class="form-control" name="Password" placeholder="Şifre">
+                                </div>
+                                <div class="form-group form-inline text-left">
+                                    <div class="form-check">
+                                        <label>
+                                            <input type="checkbox"><small class="m-l-10"> Beni Hatırla</small>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="text-left form-group">
+                                    <button type="submit" class="btn">Giriş</button>
+                                </div>
+                            }
+                            <p class="small">
+                                Henüz bir hesabınız yok mu? <a href="~/Login/Register">Üye Ol!</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- end: Section -->
+    </div>
+    <!-- end: Body Inner -->
+    <!-- Scroll top -->
+    <a id="scrollTop"><i class="icon-chevron-up"></i><i class="icon-chevron-up"></i></a>
+    <!--Plugins-->
+    <script src="js/jquery.js"></script>
+    <script src="js/plugins.js"></script>
+    <!--Template functions-->
+    <script src="js/functions.js"></script>
+</body>
+
+</html>
