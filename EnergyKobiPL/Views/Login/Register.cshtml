@@ -1,4 +1,4 @@
-﻿
+﻿@model EnergyKobiPL.Models.RegisterViewModel
 @{
     Layout = null;
 }
@@ -16,6 +16,7 @@
     <!-- Document title -->
     <!-- Stylesheets & Fonts -->
 
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/plugins.css" rel="stylesheet" />
     <link href="~/Content/style.css" rel="stylesheet" />
     <link href="~/Scripts/plugins/fontawesome/css/fontawesome.min.css" rel="stylesheet" />
@@ -25,7 +26,7 @@
     <!-- Body Inner -->
     <div class="body-inner">
         <!-- Section -->
-        <section class="fullscreen" style="background-image: url(Images/Login/1.jpg)">
+        <section class="fullscreen" style="background-image: url('../Images/Login/1.jpg')">
             <div class="container container-fullscreen">
                 <div class="text-middle">
                     <div class="text-center m-b-30">
@@ -37,6 +38,8 @@
                         <div class="col-lg-6 center p-40 background-white b-r-6">
                             @using (Html.BeginForm("Register", "Login", FormMethod.Post))
                             {
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <h3>Hesap Oluştur</h3>
@@ -44,40 +47,40 @@
                                     </div>
                                     <div class="col-lg-6 form-group">
                                         <label class="sr-only">Ad</label>
-                                        <input type="text" placeholder="Adınız giriniz" class="form-control" name="FirstName">
+                                        <input id="FirstName" type="text" placeholder="Adınız giriniz" class="form-control" name="FirstName">
                                     </div>
                                     <div class="col-lg-6 form-group">
                                         <label class="sr-only">Soyad</label>
-                                        <input type="text" value="" placeholder="Soyadınızı giriniz" class="form-control" name="LastName">
+                                        <input id="LastName" type="text" value="" placeholder="Soyadınızı giriniz" class="form-control" name="LastName">
                                     </div>
                                     <div class="col-lg-6 form-group">
                                         <label class="sr-only">Kullanıcı Adı</label>
-                                        <input type="text" value="" placeholder="Kullanıcı Adınızı giriniz" class="form-control" name="UserName">
+                                        <input id="UserName" type="text" value="" placeholder="Kullanıcı Adınızı giriniz" class="form-control" name="UserName">
                                     </div>
                                     <div class="col-lg-6 form-group">
                                         <label class="sr-only">Telefon Numarası</label>
-                                        <input type="password" value="" placeholder="Telefon Numaranızı giriniz" class="form-control" name="PhoneNumber">
+                                        <input id="PhoneNumber" type="text" value="" placeholder="Telefon Numaranızı giriniz" class="form-control" name="PhoneNumber">
                                     </div>
                                     <div class="col-lg-6 form-group">
                                         <label class="sr-only">E-Mail</label>
-                                        <input type="text" value="" placeholder="E-Mailinizi giriniz" class="form-control" name="Email">
+                                        <input id="Email" type="text" value="" placeholder="E-Mailinizi giriniz" class="form-control" name="Email">
                                     </div>
                                     <div class="col-lg-6 form-group">
                                         <label class="sr-only">E-Mail_tekrar</label>
-                                        <input type="text" value="" placeholder="Tekrar E-Mailinizi giriniz" class="form-control" name="ConfirmEmail">
+                                        <input id="ConfirmEmail" type="text" value="" placeholder="Tekrar E-Mailinizi giriniz" class="form-control" name="ConfirmEmail">
                                     </div>
                                     <div class="col-lg-6 form-group">
                                         <label class="sr-only">Şifre</label>
-                                        <input type="text" value="" placeholder="Şifrenizi giriniz" class="form-control" name="Password">
+                                        <input id="Password" type="text" value="" placeholder="Şifrenizi giriniz" class="form-control" name="Password">
                                     </div>
                                     <div class="col-lg-6 form-group">
                                         <label class="sr-only">Şifre_tekrar</label>
-                                        <input type="text" value="" placeholder="Tekrar Şifenizi Giriniz" class="form-control" name="ConfirmPassword">
+                                        <input id="ConfirmPassword" type="text" value="" placeholder="Tekrar Şifenizi Giriniz" class="form-control" name="ConfirmPassword">
                                     </div>
 
                                     <div class="col-lg-12 form-group">
-                                        <button class="btn" type="submit">Hesap Oluştur </button>
-                                        <button type="button" class="btn btn-danger m-l-10">İptal</button>
+                                        <button id="registerButton" class="btn" type="submit">Hesap Oluştur</button>
+                                        <a href="~/Login/Login" class="btn btn-danger m-l-10">İptal</a>
                                     </div>
                                 </div>
                             }
@@ -91,11 +94,51 @@
     <!-- end: Body Inner -->
     <!-- Scroll top -->
     <a id="scrollTop"><i class="icon-chevron-up"></i><i class="icon-chevron-up"></i></a>
+    <div class="modal" id="warningModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header btn-warning">
+                    <h5 class="modal-title">Uyarı!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div id="modalBody" class="modal-body">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!--Plugins-->
-    <script src="js/jquery.js"></script>
-    <script src="js/plugins.js"></script>
+    <script src="~/Scripts/jquery.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/plugins.js"></script>
     <!--Template functions-->
-    <script src="js/functions.js"></script>
+    <script src="~/Scripts/functions.js"></script>
 </body>
 
 </html>
+
+<script>
+    $('#registerButton').click(function (e) {
+        if ($('#FirstName').val() == "" || $('#LastName').val() == "" || $('#UserName').val() == "" ||
+            $('#PhoneNumber').val() == "" || $('#Email').val() == "" || $('#Password').val() == "") {
+            e.preventDefault();
+            $('#modalBody').html('Lütfen eksik alanları doldurunuz!');
+            $('#warningModal').modal('show');
+        }
+        else if ($('#Password').val() != $('#ConfirmPassword').val()) {
+            e.preventDefault();
+            $('#modalBody').html('Onay şifre alanı doğru değil!');
+            $('#warningModal').modal('show');
+        }
+        else if ($('#Email').val() != $('#ConfirmEmail').val()) {
+            e.preventDefault();
+            $('#modalBody').html('Onay mail alanı doğru değil!');
+            $('#warningModal').modal('show');
+        }
+    })
+</script>

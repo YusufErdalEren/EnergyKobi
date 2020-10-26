@@ -26,7 +26,10 @@ namespace EnergyKobiPL.Controllers
                 if (customer != null)
                     return RedirectToAction("Index", "Home");
                 else
-                    return RedirectToAction("Login", "Login");
+                {
+                    ModelState.AddModelError("", "Kullanıcı bulunamadı. Kullanıcı adı ya da şifre yanlış.");
+                    return View(model);
+                }
 
             }
         }

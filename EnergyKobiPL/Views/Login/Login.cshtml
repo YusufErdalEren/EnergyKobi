@@ -1,4 +1,5 @@
-﻿
+﻿@model EnergyKobiPL.Models.LoginViewModel
+
 @{
     Layout = null;
 }
@@ -25,7 +26,7 @@
     <!-- Body Inner -->
     <div class="body-inner">
         <!-- Section -->
-        <section class="fullscreen" style="background-image: url(Images/Login/1.jpg))">
+        <section class="fullscreen" style="background-image: url('../Images/Login/2.jpg')">
             <div class="container">
                 <div>
                     <div class="text-center m-b-30">
@@ -38,6 +39,8 @@
                             <h3>Hesabınıza Giriş Yapın</h3>
                             @using (Html.BeginForm("Login", "Login", FormMethod.Post))
                             {
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
                                 <div class="form-group">
                                     <label class="sr-only">Email veya Kullanıcı Adı</label>
                                     <input type="text" class="form-control" name="UserName" placeholder="Email veya Kullanıcı Adı">
@@ -55,6 +58,7 @@
                                 </div>
                                 <div class="text-left form-group">
                                     <button type="submit" class="btn">Giriş</button>
+                                    <a href="~/Home/Index" class="btn btn-danger m-l-10">Geri</a>
                                 </div>
                             }
                             <p class="small">
@@ -71,10 +75,12 @@
     <!-- Scroll top -->
     <a id="scrollTop"><i class="icon-chevron-up"></i><i class="icon-chevron-up"></i></a>
     <!--Plugins-->
-    <script src="js/jquery.js"></script>
-    <script src="js/plugins.js"></script>
+    <script src="~/Scripts/jquery.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/plugins.js"></script>
     <!--Template functions-->
-    <script src="js/functions.js"></script>
+    <script src="~/Scripts/functions.js"></script>
 </body>
 
 </html>

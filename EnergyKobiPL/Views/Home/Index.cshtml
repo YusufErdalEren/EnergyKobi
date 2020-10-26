@@ -61,7 +61,7 @@
                             <div class="row">
                                 <div class="form-group col-md-6">
                                     <label for="subject">Telefon Numarası</label>
-                                    <input type="text" name="PhoneNumber" class="form-control" placeholder="Telefon Numaranızı Giriniz">
+                                    <input id="PhoneNumber" type="text" name="PhoneNumber" class="form-control" placeholder="Telefon Numaranızı Giriniz">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="subject">Şirket</label>
@@ -71,7 +71,7 @@
                             <div class="row">
                                 <div class="form-group col-md-6">
                                     <label for="subject">Aylık Ortalama Elektrik Faturanız</label>
-                                    <input type="text" name="AvarageElectricityBill" class="form-control" placeholder="Aylık Ortalama Elektrik Faturanızı Giriniz">
+                                    <input id="AvarageElectricityBill" type="text" name="AvarageElectricityBill" class="form-control" placeholder="Aylık Ortalama Elektrik Faturanızı Giriniz">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="gender">Abone Grubu</label>
@@ -87,13 +87,13 @@
                                 <div class="form-row">
                                     <div class="form-group">
                                         <label for="telephone">Son Elektrik Faturanızın Resmini Yükleyiniz</label>
-                                        <input type="file" name="ElectricityBillDocument" />
+                                        <input id="ElectricityBillDocument" type="file" name="ElectricityBillDocument" />
                                     </div>
                                 </div>
 
                             </div>
                             <div class="text-right">
-                                <button type="submit" class="btn btn-lg">Formu İlet</button>
+                                <button id="saveCustomerRequest" type="submit" class="btn btn-lg">Formu İlet</button>
                             </div>
                         }
                     </div>
@@ -250,7 +250,7 @@
             <div class="row">
                 <div class="col-lg-5">
 
-                    <img alt="name" src="images/name.png" class="img-fluid m-b-10">
+                    <img alt="name" src="~/Images/name.png" class="img-fluid m-b-10">
 
 
                     <h2 class="text-medium">Name Karoğlu</h2>
@@ -265,7 +265,7 @@
                 </div>
                 <div class="col-lg-5">
 
-                    <img alt="fahri" src="images/fahri.png" class="img-fluid m-b-10">
+                    <img alt="fahri" src="~/Images/fahri.png" class="img-fluid m-b-10">
 
 
                     <h2 class="text-medium">Fahri Aydın</h2>
@@ -387,7 +387,7 @@
                                 <li class="social-facebook"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
                                 <li class="social-twitter"><a href="#"><i class="fab fa-twitter"></i></a></li>
                                 <li class="social-vimeo"><a href="#"><i class="fab fa-vimeo"></i></a></li>
-                                <li class="social-youtube"><a href="#"><i class="fab fa-youtube"></i></a></li>
+                                <li class="social-youtube"><a href="#"><i class="fa fa-youtube"></i></a></li>
                                 <li class="social-pinterest"><a href="#"><i class="fab fa-pinterest"></i></a></li>
                                 <li class="social-gplus"><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
                             </ul>
@@ -403,3 +403,42 @@
 </div> <!-- end: Body Inner -->
 <!-- Scroll top -->
 <a id="scrollTop" class="scroll-to" href="body"><i class="icon-chevron-up"></i><i class="icon-chevron-up"></i></a>
+
+<div class="modal" id="warningModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header btn-warning">
+                <h5 class="modal-title">Uyarı!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="modalBody" class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#saveCustomerRequest').click(function (e) {
+        if ($('#PhoneNumber').val() == "") {
+            e.preventDefault();
+            $('#modalBody').html('Lütfen telefon numarası giriniz!');
+            $('#warningModal').modal('show');
+        }
+        else if ($('#AvarageElectricityBill').val() == "") {
+            e.preventDefault();
+            $('#modalBody').html('Lütfen ortalama fatura tutarını giriniz!');
+            $('#warningModal').modal('show');
+        }
+        else if ($('ElectricityBillDocument').val() == "") {
+            e.preventDefault();
+            $('#modalBody').html('Lütfen fatura resmini yükleyiniz');
+            $('#warningModal').modal('show');
+        }
+    }) 
+    
+</script>
