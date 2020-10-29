@@ -63,19 +63,21 @@
                                     </div>
                                     <div class="col-lg-6 form-group">
                                         <label class="sr-only">E-Mail</label>
-                                        <input id="Email" type="text" value="" placeholder="E-Mailinizi giriniz" class="form-control" name="Email">
+                                        @Html.TextBox("Email", "", new { @class="form-control", type = "email", placeholder = "example@hotmail.com" })
+                                        @*<input id="Email" type="text" value="" placeholder="E-Mailinizi giriniz" class="form-control" name="Email">*@
                                     </div>
                                     <div class="col-lg-6 form-group">
                                         <label class="sr-only">E-Mail_tekrar</label>
-                                        <input id="ConfirmEmail" type="text" value="" placeholder="Tekrar E-Mailinizi giriniz" class="form-control" name="ConfirmEmail">
+                                        @Html.TextBox("ConfirmEmail", "", new { @class = "form-control", type = "email", placeholder = "example@hotmail.com" })
+                                        @*<input id="ConfirmEmail" type="text" value="" placeholder="Tekrar E-Mailinizi giriniz" class="form-control" name="ConfirmEmail">*@
                                     </div>
                                     <div class="col-lg-6 form-group">
                                         <label class="sr-only">Şifre</label>
-                                        <input id="Password" type="text" value="" placeholder="Şifrenizi giriniz" class="form-control" name="Password">
+                                        <input id="Password" type="password" value="" placeholder="Şifrenizi giriniz" class="form-control" name="Password">
                                     </div>
                                     <div class="col-lg-6 form-group">
                                         <label class="sr-only">Şifre_tekrar</label>
-                                        <input id="ConfirmPassword" type="text" value="" placeholder="Tekrar Şifenizi Giriniz" class="form-control" name="ConfirmPassword">
+                                        <input id="ConfirmPassword" type="password" value="" placeholder="Tekrar Şifenizi Giriniz" class="form-control" name="ConfirmPassword">
                                     </div>
 
                                     <div class="col-lg-12 form-group">

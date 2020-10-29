@@ -29,5 +29,6 @@ namespace EnergyKobiPL.DBContext
         public virtual DbSet<SubscriberGroup> SubscriberGroups { get; set; }
         public virtual DbSet<BillDocument> BillDocuments { get; set; }
         public virtual DbSet<CustomerRequest> CustomerRequests { get; set; }
+        public virtual DbSet<SendEmailAddress> SendEmailAddresses { get; set; }
     }
 }

@@ -154,6 +154,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ElectricityModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="DBContext\SendEmailAddress.cs">
+      <DependentUpon>ElectricityModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DBContext\SubscriberGroup.cs">
       <DependentUpon>ElectricityModel.tt</DependentUpon>
     </Compile>
