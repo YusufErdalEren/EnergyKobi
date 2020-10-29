@@ -25,9 +25,9 @@ namespace EnergyKobiPL.DBContext
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<BillDocument> BillDocuments { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
-        public virtual DbSet<CustomerRequest> CustomerRequests { get; set; }
         public virtual DbSet<SubscriberGroup> SubscriberGroups { get; set; }
+        public virtual DbSet<BillDocument> BillDocuments { get; set; }
+        public virtual DbSet<CustomerRequest> CustomerRequests { get; set; }
     }
 }

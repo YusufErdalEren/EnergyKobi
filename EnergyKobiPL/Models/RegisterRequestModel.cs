@@ -11,9 +11,10 @@ namespace EnergyKobiPL.Models
         public string LastName { get; set; }
         public string PhoneNumber { get; set; }
         public string CompanyName { get; set; }
-        public decimal AverageElectricityBill { get; set; }
+        public decimal AverageElectricityBillDecimal { get; set; }
+        public string AverageElectricityBill { get; set; }
         public int SubscriberGroupId { get; set; }
-        public HttpPostedFileBase ElectricityBillDocument { get; set; }
-        public string BillDocumentId { get; set; }
+        public HttpPostedFileBase Attachment1 { get; set; }
+        public HttpPostedFileBase Attachment2 { get; set; }
     }
 }

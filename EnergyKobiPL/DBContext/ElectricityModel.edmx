@@ -9,9 +9,10 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FileName" Type="varchar" MaxLength="250" />
-          <Property Name="FileBinary" Type="varbinary(max)" />
+          <Property Name="FileBinary" Type="varbinary(max)" Nullable="false" />
+          <Property Name="CustomerRequestId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Customer">
           <Key>
@@ -31,13 +32,12 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FirstName" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="LastName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="100" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="100" />
           <Property Name="PhoneNumber" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="CompanyName" Type="varchar" MaxLength="100" />
           <Property Name="AverageElectricityBill" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="SubscriberGroupId" Type="int" Nullable="false" />
-          <Property Name="BillDocumentId" Type="varchar" MaxLength="250" Nullable="false" />
         </EntityType>
         <EntityType Name="SubscriberGroup">
           <Key>
@@ -46,19 +46,19 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SubscribeGroupName" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <Association Name="FK__CustomerR__BillD__31EC6D26">
-          <End Role="BillDocument" Type="Self.BillDocument" Multiplicity="1" />
-          <End Role="CustomerRequest" Type="Self.CustomerRequest" Multiplicity="*" />
+        <Association Name="FK__BillDocum__Custo__45F365D3">
+          <End Role="CustomerRequest" Type="Self.CustomerRequest" Multiplicity="1" />
+          <End Role="BillDocument" Type="Self.BillDocument" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="BillDocument">
+            <Principal Role="CustomerRequest">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="CustomerRequest">
-              <PropertyRef Name="BillDocumentId" />
+            <Dependent Role="BillDocument">
+              <PropertyRef Name="CustomerRequestId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CustomerR__Subsc__32E0915F">
+        <Association Name="FK__CustomerR__Subsc__4316F928">
           <End Role="SubscriberGroup" Type="Self.SubscriberGroup" Multiplicity="1" />
           <End Role="CustomerRequest" Type="Self.CustomerRequest" Multiplicity="*" />
           <ReferentialConstraint>
@@ -75,11 +75,11 @@
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CustomerRequest" EntityType="Self.CustomerRequest" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubscriberGroup" EntityType="Self.SubscriberGroup" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__CustomerR__BillD__31EC6D26" Association="Self.FK__CustomerR__BillD__31EC6D26">
-            <End Role="BillDocument" EntitySet="BillDocument" />
+          <AssociationSet Name="FK__BillDocum__Custo__45F365D3" Association="Self.FK__BillDocum__Custo__45F365D3">
             <End Role="CustomerRequest" EntitySet="CustomerRequest" />
+            <End Role="BillDocument" EntitySet="BillDocument" />
           </AssociationSet>
-          <AssociationSet Name="FK__CustomerR__Subsc__32E0915F" Association="Self.FK__CustomerR__Subsc__32E0915F">
+          <AssociationSet Name="FK__CustomerR__Subsc__4316F928" Association="Self.FK__CustomerR__Subsc__4316F928">
             <End Role="SubscriberGroup" EntitySet="SubscriberGroup" />
             <End Role="CustomerRequest" EntitySet="CustomerRequest" />
           </AssociationSet>
@@ -88,15 +88,6 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TestElectricityKobiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="BillDocument">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="FileName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="FileBinary" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <NavigationProperty Name="CustomerRequests1" Relationship="Self.FK__CustomerR__BillD__2F10007B" FromRole="BillDocument" ToRole="CustomerRequest" />
-        </EntityType>
         <EntityType Name="Customer">
           <Key>
             <PropertyRef Name="Id" />
@@ -110,56 +101,65 @@
           <Property Name="ConfirmEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="CustomerRequest">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PhoneNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="CompanyName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="AverageElectricityBill" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="SubscriberGroupId" Type="Int32" Nullable="false" />
-          <Property Name="BillDocumentId" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="BillDocument1" Relationship="Self.FK__CustomerR__BillD__2F10007B" FromRole="CustomerRequest" ToRole="BillDocument" />
-          <NavigationProperty Name="SubscriberGroup" Relationship="TestElectricityKobiModel.FK__CustomerR__Subsc__32E0915F" FromRole="CustomerRequest" ToRole="SubscriberGroup" />
-        </EntityType>
         <EntityType Name="SubscriberGroup">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SubscribeGroupName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="CustomerRequests" Relationship="TestElectricityKobiModel.FK__CustomerR__Subsc__32E0915F" FromRole="SubscriberGroup" ToRole="CustomerRequest" />
+          <NavigationProperty Name="CustomerRequests" Relationship="TestElectricityKobiModel.FK__CustomerR__Subsc__4316F928" FromRole="SubscriberGroup" ToRole="CustomerRequest" />
         </EntityType>
-        <Association Name="FK__CustomerR__BillD__2F10007B">
-          <End Role="BillDocument" Type="Self.BillDocument" Multiplicity="1" />
-          <End Role="CustomerRequest" Type="Self.CustomerRequest" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BillDocument">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CustomerRequest">
-              <PropertyRef Name="BillDocumentId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="TestElectricityKobiEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="BillDocuments" EntityType="Self.BillDocument" />
           <EntitySet Name="Customers" EntityType="Self.Customer" />
-          <EntitySet Name="CustomerRequests" EntityType="Self.CustomerRequest" />
           <EntitySet Name="SubscriberGroups" EntityType="Self.SubscriberGroup" />
-          <AssociationSet Name="FK__CustomerR__BillD__2F10007B" Association="Self.FK__CustomerR__BillD__2F10007B">
-            <End Role="BillDocument" EntitySet="BillDocuments" />
+          <EntitySet Name="BillDocuments" EntityType="TestElectricityKobiModel.BillDocument" />
+          <EntitySet Name="CustomerRequests" EntityType="TestElectricityKobiModel.CustomerRequest" />
+          <AssociationSet Name="FK__BillDocum__Custo__45F365D3" Association="TestElectricityKobiModel.FK__BillDocum__Custo__45F365D3">
             <End Role="CustomerRequest" EntitySet="CustomerRequests" />
+            <End Role="BillDocument" EntitySet="BillDocuments" />
           </AssociationSet>
-          <AssociationSet Name="FK__CustomerR__Subsc__32E0915F" Association="TestElectricityKobiModel.FK__CustomerR__Subsc__32E0915F">
+          <AssociationSet Name="FK__CustomerR__Subsc__4316F928" Association="TestElectricityKobiModel.FK__CustomerR__Subsc__4316F928">
             <End Role="SubscriberGroup" EntitySet="SubscriberGroups" />
             <End Role="CustomerRequest" EntitySet="CustomerRequests" />
           </AssociationSet>
         </EntityContainer>
-        <Association Name="FK__CustomerR__Subsc__32E0915F">
+        <EntityType Name="BillDocument">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FileName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="FileBinary" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="CustomerRequestId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CustomerRequest" Relationship="TestElectricityKobiModel.FK__BillDocum__Custo__45F365D3" FromRole="BillDocument" ToRole="CustomerRequest" />
+        </EntityType>
+        <EntityType Name="CustomerRequest">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="AverageElectricityBill" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="SubscriberGroupId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BillDocuments" Relationship="TestElectricityKobiModel.FK__BillDocum__Custo__45F365D3" FromRole="CustomerRequest" ToRole="BillDocument" />
+          <NavigationProperty Name="SubscriberGroup" Relationship="TestElectricityKobiModel.FK__CustomerR__Subsc__4316F928" FromRole="CustomerRequest" ToRole="SubscriberGroup" />
+        </EntityType>
+        <Association Name="FK__BillDocum__Custo__45F365D3">
+          <End Type="TestElectricityKobiModel.CustomerRequest" Role="CustomerRequest" Multiplicity="1" />
+          <End Type="TestElectricityKobiModel.BillDocument" Role="BillDocument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomerRequest">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BillDocument">
+              <PropertyRef Name="CustomerRequestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CustomerR__Subsc__4316F928">
           <End Type="TestElectricityKobiModel.SubscriberGroup" Role="SubscriberGroup" Multiplicity="1" />
           <End Type="TestElectricityKobiModel.CustomerRequest" Role="CustomerRequest" Multiplicity="*" />
           <ReferentialConstraint>
@@ -177,15 +177,6 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="TestElectricityKobiModelStoreContainer" CdmEntityContainer="TestElectricityKobiEntities">
-          <EntitySetMapping Name="BillDocuments">
-            <EntityTypeMapping TypeName="TestElectricityKobiModel.BillDocument">
-              <MappingFragment StoreEntitySet="BillDocument">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="FileName" ColumnName="FileName" />
-                <ScalarProperty Name="FileBinary" ColumnName="FileBinary" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Customers">
             <EntityTypeMapping TypeName="TestElectricityKobiModel.Customer">
               <MappingFragment StoreEntitySet="Customer">
@@ -200,25 +191,34 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="CustomerRequests">
-            <EntityTypeMapping TypeName="TestElectricityKobiModel.CustomerRequest">
-              <MappingFragment StoreEntitySet="CustomerRequest">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
-                <ScalarProperty Name="AverageElectricityBill" ColumnName="AverageElectricityBill" />
-                <ScalarProperty Name="SubscriberGroupId" ColumnName="SubscriberGroupId" />
-                <ScalarProperty Name="BillDocumentId" ColumnName="BillDocumentId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="SubscriberGroups">
             <EntityTypeMapping TypeName="TestElectricityKobiModel.SubscriberGroup">
               <MappingFragment StoreEntitySet="SubscriberGroup">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="SubscribeGroupName" ColumnName="SubscribeGroupName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BillDocuments">
+            <EntityTypeMapping TypeName="TestElectricityKobiModel.BillDocument">
+              <MappingFragment StoreEntitySet="BillDocument">
+                <ScalarProperty Name="CustomerRequestId" ColumnName="CustomerRequestId" />
+                <ScalarProperty Name="FileBinary" ColumnName="FileBinary" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CustomerRequests">
+            <EntityTypeMapping TypeName="TestElectricityKobiModel.CustomerRequest">
+              <MappingFragment StoreEntitySet="CustomerRequest">
+                <ScalarProperty Name="SubscriberGroupId" ColumnName="SubscriberGroupId" />
+                <ScalarProperty Name="AverageElectricityBill" ColumnName="AverageElectricityBill" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -71,7 +71,7 @@
                             <div class="row">
                                 <div class="form-group col-md-6">
                                     <label for="subject">Aylık Ortalama Elektrik Faturanız</label>
-                                    <input id="AvarageElectricityBill" type="text" name="AvarageElectricityBill" class="form-control" placeholder="Aylık Ortalama Elektrik Faturanızı Giriniz">
+                                    <input id="AvarageElectricityBill" type="text" name="AverageElectricityBill" class="form-control" placeholder="Aylık Ortalama Elektrik Faturanızı Giriniz">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="gender">Abone Grubu</label>
@@ -86,8 +86,12 @@
                             <div class="row">
                                 <div class="form-row">
                                     <div class="form-group">
-                                        <label for="telephone">Son Elektrik Faturanızın Resmini Yükleyiniz</label>
-                                        <input id="ElectricityBillDocument" type="file" name="ElectricityBillDocument" />
+                                        <label for="telephone">Son 2 Elektrik Faturanızın Resmini Yükleyiniz</label>
+                                        <button class="add btn btn-md">
+                                            Dosya Yükle
+                                        </button>
+                                        <ul class="list">
+                                        </ul>
                                     </div>
                                 </div>
 
@@ -424,6 +428,8 @@
 
 <script>
     $('#saveCustomerRequest').click(function (e) {
+        var avarageElectricityBill = parseFloat($('#AvarageElectricityBill').val()).toFixed(2).replace('.', ',');
+        $('#AvarageElectricityBill').val(avarageElectricityBill);
         if ($('#PhoneNumber').val() == "") {
             e.preventDefault();
             $('#modalBody').html('Lütfen telefon numarası giriniz!');
@@ -434,11 +440,37 @@
             $('#modalBody').html('Lütfen ortalama fatura tutarını giriniz!');
             $('#warningModal').modal('show');
         }
-        else if ($('ElectricityBillDocument').val() == "") {
+        else if ($('input[name = Attachment1')[0] == undefined) {
             e.preventDefault();
             $('#modalBody').html('Lütfen fatura resmini yükleyiniz');
             $('#warningModal').modal('show');
         }
-    }) 
-    
+        else if ($('input[name = Attachment2')[0] == undefined) {
+            e.preventDefault();
+            $('#modalBody').html('Lütfen 2. fatura resmini yükleyiniz');
+            $('#warningModal').modal('show');
+        }
+    })
+
+    $('form button.add').click(function (e) {
+        e.preventDefault();
+        var nb_attachments = $('input[type=file]').length + 1;
+        var $input = $('<input type="file" name=Attachment' + nb_attachments + '>');
+        $input.on('change', function (evt) {
+            var f = evt.target.files[0];
+            $('form').append($(this));
+            $('ul.list').append('<li id="lifile' + nb_attachments + '"' + 'class="item">' + f.name + '(' + f.size + ')&nbsp;<span id="removeFile' + nb_attachments + '"' + 'class="badge badge-danger">Remove</span></li>');
+        });
+        $input.hide();
+        $input.trigger('click');
+    });
+
+    $(document).on('click', '.badge-danger', function () {
+        var id = $(this)[0].id;
+        var order = id.split('removeFile')[1];
+        $('#lifile' + order).remove();
+        $('input[name = Attachment' + order + ']').remove();
+    });
+
+
 </script>

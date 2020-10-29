@@ -14,6 +14,12 @@ namespace EnergyKobiPL.DBContext
     
     public partial class CustomerRequest
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public CustomerRequest()
+        {
+            this.BillDocuments = new HashSet<BillDocument>();
+        }
+    
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -21,9 +27,9 @@ namespace EnergyKobiPL.DBContext
         public string CompanyName { get; set; }
         public decimal AverageElectricityBill { get; set; }
         public int SubscriberGroupId { get; set; }
-        public string BillDocumentId { get; set; }
     
-        public virtual BillDocument BillDocument1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BillDocument> BillDocuments { get; set; }
         public virtual SubscriberGroup SubscriberGroup { get; set; }
     }
 }

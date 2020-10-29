@@ -14,17 +14,11 @@ namespace EnergyKobiPL.DBContext
     
     public partial class BillDocument
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public BillDocument()
-        {
-            this.CustomerRequests1 = new HashSet<CustomerRequest>();
-        }
-    
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string FileName { get; set; }
         public byte[] FileBinary { get; set; }
+        public int CustomerRequestId { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CustomerRequest> CustomerRequests1 { get; set; }
+        public virtual CustomerRequest CustomerRequest { get; set; }
     }
 }

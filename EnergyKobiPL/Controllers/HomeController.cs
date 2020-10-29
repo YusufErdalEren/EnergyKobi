@@ -21,46 +21,57 @@ namespace EnergyKobiPL.Controllers
         {
             using (TestElectricityKobiEntities db = new TestElectricityKobiEntities())
             {
+                //string olarak gelen değeri, Decimal değer tipine dönüştürdük.
+                model.AverageElectricityBillDecimal = Convert.ToDecimal(model.AverageElectricityBill);
 
-                byte[] billDocumentBinary;
-                string guidID = Guid.NewGuid().ToString();
 
-                if (model != null && model.ElectricityBillDocument != null)
+                var customerRequest = new CustomerRequest
                 {
-                    try
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    PhoneNumber = model.PhoneNumber,
+                    CompanyName = model.CompanyName,
+                    SubscriberGroupId = model.SubscriberGroupId,
+                    AverageElectricityBill = model.AverageElectricityBillDecimal
+                };
+
+                db.CustomerRequests.Add(customerRequest);
+                db.SaveChanges();
+
+                var customerRequestId = customerRequest.Id;
+
+                var fileList = new List<HttpPostedFileBase>();
+                fileList.Add(model.Attachment1);
+                fileList.Add(model.Attachment2);
+
+                foreach (var file in fileList)
+                {
+                    byte[] billDocumentBinary = null;
+
+                    if (file != null)
                     {
-                        using (Stream inputStream = model.ElectricityBillDocument.InputStream)
+                        try
                         {
-                            MemoryStream memoryStream = inputStream as MemoryStream;
-                            if (memoryStream == null)
+                            using (Stream inputStream = file.InputStream)
                             {
-                                memoryStream = new MemoryStream();
-                                inputStream.CopyTo(memoryStream);
+                                MemoryStream memoryStream = inputStream as MemoryStream;
+                                if (memoryStream == null)
+                                {
+                                    memoryStream = new MemoryStream();
+                                    inputStream.CopyTo(memoryStream);
+                                }
+                                billDocumentBinary = memoryStream.ToArray();
                             }
-                            billDocumentBinary = memoryStream.ToArray();
+
+                            db.BillDocuments.Add(new BillDocument { FileName = file.FileName, FileBinary = billDocumentBinary, CustomerRequestId = customerRequestId });
+                            db.SaveChanges();
                         }
-
-                        db.BillDocuments.Add(new BillDocument { Id = guidID, FileName = model.ElectricityBillDocument.FileName, FileBinary = billDocumentBinary });
-                        db.SaveChanges();
+                        catch (Exception ex)
+                        {
+                            return RedirectToAction("Index", "Home");
+                        }
                     }
-                    catch (Exception ex)
-                    {
-                        return RedirectToAction("Index", "Home");
-                    }
-
-                    db.CustomerRequests.Add(new CustomerRequest
-                    {
-                        FirstName = model.FirstName,
-                        LastName = model.LastName,
-                        PhoneNumber = model.PhoneNumber,
-                        CompanyName = model.CompanyName,
-                        SubscriberGroupId = model.SubscriberGroupId,
-                        BillDocumentId = guidID
-                    });
-                    db.SaveChanges();
-
-                    return RedirectToAction("Index", "Home");
-                }
+                } 
 
                 return RedirectToAction("Index", "Home");
             }
