@@ -207,6 +207,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\1.jpg" />
     <Content Include="Images\2.jpg" />
+    <Content Include="Images\dropdown-arrow.png" />
     <Content Include="Images\fahri.png" />
     <Content Include="Images\Login\1.jpg" />
     <Content Include="Images\Login\2.jpg" />
@@ -325,6 +326,10 @@
     <Content Include="Content\webfonts\fa-solid-900.woff2" />
     <Content Include="Content\webfonts\inspiro-icons.ttf" />
     <Content Include="Content\webfonts\inspiro-icons.woff" />
+    <Content Include="webfonts\fa-brands-400.svg" />
+    <Content Include="webfonts\fa-regular-400.svg" />
+    <Content Include="webfonts\fa-solid-900.svg" />
+    <Content Include="webfonts\inspiro-icons.svg" />
     <EntityDeploy Include="DBContext\ElectricityModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ElectricityModel.Designer.cs</LastGenOutput>
@@ -4037,6 +4042,20 @@
     <Content Include="Scripts\plugins\slider-revolution\revolution-addons\whiteboard\js\.DS_Store" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Login\Register.cshtml" />
+    <Content Include="webfonts\fa-brands-400.eot" />
+    <Content Include="webfonts\fa-brands-400.ttf" />
+    <Content Include="webfonts\fa-brands-400.woff" />
+    <Content Include="webfonts\fa-brands-400.woff2" />
+    <Content Include="webfonts\fa-regular-400.eot" />
+    <Content Include="webfonts\fa-regular-400.ttf" />
+    <Content Include="webfonts\fa-regular-400.woff" />
+    <Content Include="webfonts\fa-regular-400.woff2" />
+    <Content Include="webfonts\fa-solid-900.eot" />
+    <Content Include="webfonts\fa-solid-900.ttf" />
+    <Content Include="webfonts\fa-solid-900.woff" />
+    <Content Include="webfonts\fa-solid-900.woff2" />
+    <Content Include="webfonts\inspiro-icons.ttf" />
+    <Content Include="webfonts\inspiro-icons.woff" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
