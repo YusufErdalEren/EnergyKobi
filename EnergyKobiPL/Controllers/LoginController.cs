@@ -26,7 +26,12 @@ namespace EnergyKobiPL.Controllers
                 var customer = db.Customers.FirstOrDefault(x => (x.Email == model.UserName || x.UserName == model.UserName));
 
                 if (customer != null && Crypto.VerifyHashedPassword(customer.Password, model.Password))
+                {
+                    Session["UserName"] = $"{customer.FirstName} {customer.LastName}";
+                    Session["UserEmail"] = customer.Email;
+                    Session["PhoneNumber"] = customer.PhoneNumber;
                     return RedirectToAction("Index", "Home");
+                }
                 else
                 {
                     ModelState.AddModelError("", "Kullanıcı bulunamadı. Kullanıcı adı ya da şifre yanlış.");
@@ -98,5 +103,15 @@ namespace EnergyKobiPL.Controllers
                 }
             }
         }
+
+        public ActionResult Logout()
+        {
+            Session["UserName"] = null;
+            Session["UserEmail"] = null;
+            Session["PhoneNumber"] = null;
+            Session.Abandon();
+            return RedirectToAction("Index", "Home");
+        }
+
     }
 }

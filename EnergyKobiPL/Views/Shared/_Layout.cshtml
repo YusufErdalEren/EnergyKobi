@@ -48,7 +48,6 @@
                         </a>
                     </div>
                     <!--End: Logo-->
-                    
                     <!--Header Extras-->
                     <div class="header-extras">
                         <ul>
@@ -58,6 +57,10 @@
                                 <!--end: search icon-->
                             </li>
                             <li>
+                                @if (@Session["UserName"] != null)
+                                {
+                                    <p>Hoşgeldin @Session["UserName"]</p>
+                                }
                             </li>
                         </ul>
                     </div>
@@ -73,13 +76,20 @@
                             <nav>
                                 <ul>
                                     <li><a href="Home/Index">Home</a></li>
-                                    <li class="dropdown"> <a href="#">Layout</a></li>
-                                    <li class="dropdown"> <a href="#">Features</a></li>
-                                    <li class="dropdown mega-menu-item"><a href="#">Elements</a> </li>
-                                    <li class="dropdown"> <a href="#">Pages</a></li>
-                                    <li class="dropdown mega-menu-item"> <a href="#">Portfolio</a></li>
-                                    <li class="dropdown mega-menu-item"> <a href="#">Blog</a></li>
-                                    <li class="dropdown mega-menu-item"> <a href="~/Login/Login">Giriş</a></li>
+                                    @*<li class="dropdown"> <a href="#">Layout</a></li>
+                                        <li class="dropdown"> <a href="#">Features</a></li>
+                                        <li class="dropdown mega-menu-item"><a href="#">Elements</a> </li>
+                                        <li class="dropdown"> <a href="#">Pages</a></li>
+                                        <li class="dropdown mega-menu-item"> <a href="#">Portfolio</a></li>
+                                        <li class="dropdown mega-menu-item"> <a href="#">Blog</a></li>*@
+                                    @if (Session["UserName"] == null)
+                                    {
+                                        <li class="dropdown mega-menu-item"> <a href="~/Login/Login">Giriş</a></li>
+                                    }
+                                    else
+                                    {
+                                        <li class="dropdown mega-menu-item"> <a href="~/Login/Logout">Çıkış</a></li>
+                                    }
                                 </ul>
                             </nav>
                         </div>
@@ -95,38 +105,38 @@
     </div>
 
     @*<link href="~/Scripts/plugins/dropzone/dropzone.css" rel="stylesheet" />
-    <script src="~/Scripts/plugins/dropzone/dropzone.js"></script>
-    <script>
-        Dropzone.autoDiscover = false;
-        //Form 1
-        var form2 = $('#fileUpload1');
-        form2.dropzone({
-            url: "http://polo/files/post",
-            addRemoveLinks: true,
-            maxFiles: 1,
-            maxFilesize: 10,
-            acceptedFiles: "image/*",
-        });
-        //Form 2
-        var form2 = $('#fileUpload2');
-        form2.dropzone({
-            url: "http://polo/files/post",
-            maxFilesize: 5,
-            acceptedFiles: "image/*",
-            previewsContainer: "#formFiles2",
-            previewTemplate: $("#formTemplate2").html(),
-        });
-        //Form 3
-        var form3 = $('#fileUpload3');
-        form3.dropzone({
-            url: "http://polo/files/post",
-            maxFilesize: 5,
-            acceptedFiles: "image/*",
-            previewsContainer: "#formFiles3",
-            previewTemplate: $("#formTemplate3").html(),
-            clickable: ".dropzone-attach-files"
-        });
-    </script>*@
+        <script src="~/Scripts/plugins/dropzone/dropzone.js"></script>
+        <script>
+            Dropzone.autoDiscover = false;
+            //Form 1
+            var form2 = $('#fileUpload1');
+            form2.dropzone({
+                url: "http://polo/files/post",
+                addRemoveLinks: true,
+                maxFiles: 1,
+                maxFilesize: 10,
+                acceptedFiles: "image/*",
+            });
+            //Form 2
+            var form2 = $('#fileUpload2');
+            form2.dropzone({
+                url: "http://polo/files/post",
+                maxFilesize: 5,
+                acceptedFiles: "image/*",
+                previewsContainer: "#formFiles2",
+                previewTemplate: $("#formTemplate2").html(),
+            });
+            //Form 3
+            var form3 = $('#fileUpload3');
+            form3.dropzone({
+                url: "http://polo/files/post",
+                maxFilesize: 5,
+                acceptedFiles: "image/*",
+                previewsContainer: "#formFiles3",
+                previewTemplate: $("#formTemplate3").html(),
+                clickable: ".dropzone-attach-files"
+            });
+        </script>*@
 
 
 
