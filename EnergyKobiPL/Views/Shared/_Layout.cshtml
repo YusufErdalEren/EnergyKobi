@@ -27,6 +27,7 @@
     <script src="~/Scripts/plugins.js"></script>
     <!--Template functions-->
     <script src="~/Scripts/functions.js"></script>
+    <script src="~/Scripts/jquery.mask.min.js"></script>
 
 </head>
 
@@ -49,21 +50,12 @@
                     </div>
                     <!--End: Logo-->
                     <!--Header Extras-->
-                    <div class="header-extras">
-                        <ul>
-                            <li>
-                                <!--search icon-->
-                                <a id="btn-search" href="#"> <i class="icon-search1"></i></a>
-                                <!--end: search icon-->
-                            </li>
-                            <li>
-                                @if (@Session["UserName"] != null)
-                                {
-                                    <p>Hoşgeldin @Session["UserName"]</p>
-                                }
-                            </li>
-                        </ul>
-                    </div>
+                    @*<div class="header-extras" style="float:right;">
+                            @if (@Session["UserName"] != null)
+                            {
+                                <p>Hoşgeldin @Session["UserName"]</p>
+                            }
+                        </div>*@
                     <!--end: Header Extras-->
                     <!--Navigation Resposnive Trigger-->
                     <div id="mainMenu-trigger">
@@ -90,6 +82,15 @@
                                     {
                                         <li class="dropdown mega-menu-item"> <a href="~/Login/Logout">Çıkış</a></li>
                                     }
+                                    <li class="dropdown mega-menu-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                                    <li class="dropdown mega-menu-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                                    <li class="dropdown mega-menu-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                                    <li class="dropdown mega-menu-item">
+                                        @if (@Session["UserName"] != null)
+                                        {
+                                            <span style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">Hoşgeldin @Session["UserName"]</span>
+                                        }
+                                    </li>
                                 </ul>
                             </nav>
                         </div>

@@ -61,7 +61,7 @@
                             <div class="row">
                                 <div class="form-group col-md-6">
                                     <label for="subject">Telefon Numarası</label>
-                                    <input id="PhoneNumber" type="text" name="PhoneNumber" class="form-control" placeholder="Telefon Numaranızı Giriniz">
+                                    <input id="PhoneNumber" type="tel" name="PhoneNumber" class="form-control" placeholder="Telefon Numaranızı Giriniz">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="subject">Şirket</label>
@@ -428,8 +428,12 @@
 
 <script>
     $('#saveCustomerRequest').click(function (e) {
-        var avarageElectricityBill = parseFloat($('#AvarageElectricityBill').val()).toFixed(2).replace('.', ',');
-        $('#AvarageElectricityBill').val(avarageElectricityBill);
+        
+        if ($('#AvarageElectricityBill').val() != "") {
+            var avarageElectricityBill = parseFloat($('#AvarageElectricityBill').val()).toFixed(2).replace('.', ',');
+            $('#AvarageElectricityBill').val(avarageElectricityBill);
+        }
+        
         if ($('#PhoneNumber').val() == "") {
             e.preventDefault();
             $('#modalBody').html('Lütfen telefon numarası giriniz!');
@@ -471,6 +475,8 @@
         $('#lifile' + order).remove();
         $('input[name = Attachment' + order + ']').remove();
     });
+
+    $("#PhoneNumber").mask("(999) 999-9999");
 
 
 </script>

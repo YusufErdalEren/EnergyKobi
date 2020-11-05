@@ -326,6 +326,7 @@
     <Content Include="Content\webfonts\fa-solid-900.woff2" />
     <Content Include="Content\webfonts\inspiro-icons.ttf" />
     <Content Include="Content\webfonts\inspiro-icons.woff" />
+    <Content Include="Scripts\jquery.mask.min.js" />
     <Content Include="webfonts\fa-brands-400.svg" />
     <Content Include="webfonts\fa-regular-400.svg" />
     <Content Include="webfonts\fa-solid-900.svg" />

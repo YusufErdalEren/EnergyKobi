@@ -23,13 +23,13 @@ namespace EnergyKobiPL.Controllers
             {
                 //string olarak gelen değeri, Decimal değer tipine dönüştürdük.
                 model.AverageElectricityBillDecimal = Convert.ToDecimal(model.AverageElectricityBill);
-
+                var phoneNumber = new String(model.PhoneNumber.Where(Char.IsDigit).ToArray());
 
                 var customerRequest = new CustomerRequest
                 {
                     FirstName = model.FirstName,
                     LastName = model.LastName,
-                    PhoneNumber = model.PhoneNumber,
+                    PhoneNumber = phoneNumber,
                     CompanyName = model.CompanyName,
                     SubscriberGroupId = model.SubscriberGroupId,
                     AverageElectricityBill = model.AverageElectricityBillDecimal

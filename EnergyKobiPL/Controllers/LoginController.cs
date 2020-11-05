@@ -54,6 +54,7 @@ namespace EnergyKobiPL.Controllers
                 try
                 {
                     var hashPassword = Crypto.HashPassword(model.Password);
+                    var phoneNumber = new String(model.PhoneNumber.Where(Char.IsDigit).ToArray());
 
                     db.Customers.Add(new Customer
                     {
@@ -63,7 +64,7 @@ namespace EnergyKobiPL.Controllers
                         Password = hashPassword,
                         Email = model.Email,
                         ConfirmEmail = model.Email,
-                        PhoneNumber = model.PhoneNumber
+                        PhoneNumber = phoneNumber
                     });
 
                     db.SaveChanges();

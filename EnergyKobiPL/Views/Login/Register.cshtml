@@ -59,7 +59,7 @@
                                     </div>
                                     <div class="col-lg-6 form-group">
                                         <label class="sr-only">Telefon Numarası</label>
-                                        <input id="PhoneNumber" type="text" value="" placeholder="Telefon Numaranızı giriniz" class="form-control" name="PhoneNumber">
+                                        <input id="PhoneNumber" type="tel" value="" placeholder="Telefon Numaranızı giriniz" class="form-control" name="PhoneNumber">
                                     </div>
                                     <div class="col-lg-6 form-group">
                                         <label class="sr-only">E-Mail</label>
@@ -120,6 +120,7 @@
     <script src="~/Scripts/plugins.js"></script>
     <!--Template functions-->
     <script src="~/Scripts/functions.js"></script>
+    <script src="~/Scripts/jquery.mask.min.js"></script>
 </body>
 
 </html>
@@ -143,4 +144,6 @@
             $('#warningModal').modal('show');
         }
     })
+
+    $("#PhoneNumber").mask("(999) 999-9999");
 </script>
