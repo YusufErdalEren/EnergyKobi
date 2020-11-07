@@ -2,6 +2,68 @@
     ViewBag.Title = "Home Page";
 }
 
+<header id="header" class="header-modern">
+    <div class="header-inner">
+        <div class="container">
+            <!--Logo-->
+            <div id="logo">
+                <a href="/Home/Index">
+                    <span class="logo-default">EnerjiKobi</span>
+                    <span class="logo-dark">EnerjiKobi</span>
+                </a>
+            </div>
+            <!--End: Logo-->
+            <!--Header Extras-->
+            @*<div class="header-extras" style="float:right;">
+                    @if (@Session["UserName"] != null)
+                    {
+                        <p>Hoşgeldin @Session["UserName"]</p>
+                    }
+                </div>*@
+            <!--end: Header Extras-->
+            <!--Navigation Resposnive Trigger-->
+            <div id="mainMenu-trigger">
+                <button class="lines-button x"> <span class="lines"></span> </button>
+            </div>
+            <!--end: Navigation Resposnive Trigger-->
+            <!--Navigation-->
+            <div id="mainMenu" class="light">
+                <div class="container">
+                    <nav>
+                        <ul>
+                            @*<li><a href="Home/Index">Home</a></li>*@
+                            @*<li class="dropdown"> <a href="#">Layout</a></li>
+                                <li class="dropdown"> <a href="#">Features</a></li>
+                                <li class="dropdown mega-menu-item"><a href="#">Elements</a> </li>
+                                <li class="dropdown"> <a href="#">Pages</a></li>
+                                <li class="dropdown mega-menu-item"> <a href="#">Portfolio</a></li>
+                                <li class="dropdown mega-menu-item"> <a href="#">Blog</a></li>*@
+                            @if (Session["UserName"] == null)
+                            {
+                                <li class="dropdown mega-menu-item"> <a href="~/Login/Login">Giriş</a></li>
+                            }
+                            else
+                            {
+                                <li class="dropdown mega-menu-item"> <a href="~/Login/Logout">Çıkış</a></li>
+                            }
+                            <li class="dropdown mega-menu-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                            <li class="dropdown mega-menu-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                            <li class="dropdown mega-menu-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                            <li class="dropdown mega-menu-item">
+                                @if (@Session["UserName"] != null)
+                                {
+                                    <span style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">Hoşgeldin @Session["UserName"]</span>
+                                }
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!--end: Navigation-->
+        </div>
+    </div>
+</header>
+
 <div id="slider" class="inspiro-slider dots-creative" data-height-xs="360" data-autoplay="2600" data-animate-in="fadeIn" data-animate-out="fadeOut" data-items="1" data-loop="true" data-autoplay="true">
     <!-- Slide 1 -->
     <div class="slide" style="background-image:url('/Images/1.jpg');">
@@ -385,15 +447,12 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <!-- Social icons -->
-                        <div class="social-icons social-icons-colored float-left">
+                        <div class="social-icons social-icons float-left">
                             <ul>
-                                <li class="social-rss"><a href="#"><i class="fa fa-rss"></i></a></li>
-                                <li class="social-facebook"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                <li class="social-instagram"><a href="#"><i class="fab fa-instagram"></i></a></li>
                                 <li class="social-twitter"><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                <li class="social-vimeo"><a href="#"><i class="fab fa-vimeo"></i></a></li>
-                                <li class="social-youtube"><a href="#"><i class="fab fa-youtube"></i></a></li>
-                                <li class="social-pinterest"><a href="#"><i class="fab fa-pinterest"></i></a></li>
-                                <li class="social-gplus"><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+                                <li class="social-medium"><a href="#"><i class="fab fa-medium"></i></a></li>
+                                <li class="social-linkedin"><a href="#"><i class="fab fa-linkedin"></i></a></li>
                             </ul>
                         </div>
                         <!-- end: Social icons -->
@@ -428,12 +487,12 @@
 
 <script>
     $('#saveCustomerRequest').click(function (e) {
-        
+
         if ($('#AvarageElectricityBill').val() != "") {
             var avarageElectricityBill = parseFloat($('#AvarageElectricityBill').val()).toFixed(2).replace('.', ',');
             $('#AvarageElectricityBill').val(avarageElectricityBill);
         }
-        
+
         if ($('#PhoneNumber').val() == "") {
             e.preventDefault();
             $('#modalBody').html('Lütfen telefon numarası giriniz!');
@@ -480,3 +539,16 @@
 
 
 </script>
+<link href="~/Content/plugins.css" rel="stylesheet" />
+<link href="~/Content/style.css" rel="stylesheet" />
+@*<link href="~/Scripts/plugins/fontawesome/css/fontawesome.min.css" rel="stylesheet" />*@
+
+<!-- Template color -->
+@*<link href="css/color-variations/green.css" rel="stylesheet" type="text/css" media="screen">
+    <link href="css/color-variations/green.css" rel="stylesheet" type="text/css" media="screen">*@
+
+
+<!-- CSS real-estate STYLE -->
+<link href="~/Content/real-estate-style.css" rel="stylesheet" type="text/css" media="screen" />
+<script src="~/Scripts/plugins.js"></script>
+<script src="~/Scripts/functions.js"></script>

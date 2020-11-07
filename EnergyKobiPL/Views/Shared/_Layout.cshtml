@@ -12,134 +12,16 @@
     <title>Enerjikobi</title>
     <!-- Stylesheets & Fonts -->
 
-    <link href="~/Content/plugins.css" rel="stylesheet" />
-    <link href="~/Content/style.css" rel="stylesheet" />
-    @*<link href="~/Scripts/plugins/fontawesome/css/fontawesome.min.css" rel="stylesheet" />*@
-
-    <!-- Template color -->
-    @*<link href="css/color-variations/green.css" rel="stylesheet" type="text/css" media="screen">
-        <link href="css/color-variations/green.css" rel="stylesheet" type="text/css" media="screen">*@
-
-
-    <!-- CSS real-estate STYLE -->
-    <link href="~/Content/real-estate-style.css" rel="stylesheet" type="text/css" media="screen" />
     <script src="~/Scripts/jquery.js"></script>
-    <script src="~/Scripts/plugins.js"></script>
-    <!--Template functions-->
-    <script src="~/Scripts/functions.js"></script>
     <script src="~/Scripts/jquery.mask.min.js"></script>
 
 </head>
 
 <body>
 
-
-    <!-- Body Inner -->
-    <div class="body-inner">
-
-        <!-- Header -->
-        <header id="header" class="header-modern">
-            <div class="header-inner">
-                <div class="container">
-                    <!--Logo-->
-                    <div id="logo">
-                        <a href="/Home/Index">
-                            <span class="logo-default">EnerjiKobi</span>
-                            <span class="logo-dark">EnerjiKobi</span>
-                        </a>
-                    </div>
-                    <!--End: Logo-->
-                    <!--Header Extras-->
-                    @*<div class="header-extras" style="float:right;">
-                            @if (@Session["UserName"] != null)
-                            {
-                                <p>Hoşgeldin @Session["UserName"]</p>
-                            }
-                        </div>*@
-                    <!--end: Header Extras-->
-                    <!--Navigation Resposnive Trigger-->
-                    <div id="mainMenu-trigger">
-                        <button class="lines-button x"> <span class="lines"></span> </button>
-                    </div>
-                    <!--end: Navigation Resposnive Trigger-->
-                    <!--Navigation-->
-                    <div id="mainMenu" class="light">
-                        <div class="container">
-                            <nav>
-                                <ul>
-                                    <li><a href="Home/Index">Home</a></li>
-                                    @*<li class="dropdown"> <a href="#">Layout</a></li>
-                                        <li class="dropdown"> <a href="#">Features</a></li>
-                                        <li class="dropdown mega-menu-item"><a href="#">Elements</a> </li>
-                                        <li class="dropdown"> <a href="#">Pages</a></li>
-                                        <li class="dropdown mega-menu-item"> <a href="#">Portfolio</a></li>
-                                        <li class="dropdown mega-menu-item"> <a href="#">Blog</a></li>*@
-                                    @if (Session["UserName"] == null)
-                                    {
-                                        <li class="dropdown mega-menu-item"> <a href="~/Login/Login">Giriş</a></li>
-                                    }
-                                    else
-                                    {
-                                        <li class="dropdown mega-menu-item"> <a href="~/Login/Logout">Çıkış</a></li>
-                                    }
-                                    <li class="dropdown mega-menu-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-                                    <li class="dropdown mega-menu-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-                                    <li class="dropdown mega-menu-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-                                    <li class="dropdown mega-menu-item">
-                                        @if (@Session["UserName"] != null)
-                                        {
-                                            <span style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">Hoşgeldin @Session["UserName"]</span>
-                                        }
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                    <!--end: Navigation-->
-                </div>
-            </div>
-        </header>
-    </div>
-
     <div>
         @RenderBody()
     </div>
-
-    @*<link href="~/Scripts/plugins/dropzone/dropzone.css" rel="stylesheet" />
-        <script src="~/Scripts/plugins/dropzone/dropzone.js"></script>
-        <script>
-            Dropzone.autoDiscover = false;
-            //Form 1
-            var form2 = $('#fileUpload1');
-            form2.dropzone({
-                url: "http://polo/files/post",
-                addRemoveLinks: true,
-                maxFiles: 1,
-                maxFilesize: 10,
-                acceptedFiles: "image/*",
-            });
-            //Form 2
-            var form2 = $('#fileUpload2');
-            form2.dropzone({
-                url: "http://polo/files/post",
-                maxFilesize: 5,
-                acceptedFiles: "image/*",
-                previewsContainer: "#formFiles2",
-                previewTemplate: $("#formTemplate2").html(),
-            });
-            //Form 3
-            var form3 = $('#fileUpload3');
-            form3.dropzone({
-                url: "http://polo/files/post",
-                maxFilesize: 5,
-                acceptedFiles: "image/*",
-                previewsContainer: "#formFiles3",
-                previewTemplate: $("#formTemplate3").html(),
-                clickable: ".dropzone-attach-files"
-            });
-        </script>*@
-
-
 
 </body>
 
