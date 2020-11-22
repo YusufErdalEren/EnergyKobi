@@ -34,10 +34,11 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FirstName" Type="nvarchar" MaxLength="100" />
           <Property Name="LastName" Type="nvarchar" MaxLength="100" />
-          <Property Name="PhoneNumber" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="100" />
           <Property Name="CompanyName" Type="varchar" MaxLength="100" />
           <Property Name="AverageElectricityBill" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="SubscriberGroupId" Type="int" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="SendEmailAddress">
           <Key>
@@ -122,6 +123,7 @@
           <EntitySet Name="Customers" EntityType="Self.Customer" />
           <EntitySet Name="SubscriberGroups" EntityType="Self.SubscriberGroup" />
           <EntitySet Name="BillDocuments" EntityType="TestElectricityKobiModel.BillDocument" />
+          <EntitySet Name="SendEmailAddresses" EntityType="TestElectricityKobiModel.SendEmailAddress" />
           <EntitySet Name="CustomerRequests" EntityType="TestElectricityKobiModel.CustomerRequest" />
           <AssociationSet Name="FK__BillDocum__Custo__45F365D3" Association="TestElectricityKobiModel.FK__BillDocum__Custo__45F365D3">
             <End Role="CustomerRequest" EntitySet="CustomerRequests" />
@@ -131,7 +133,6 @@
             <End Role="SubscriberGroup" EntitySet="SubscriberGroups" />
             <End Role="CustomerRequest" EntitySet="CustomerRequests" />
           </AssociationSet>
-          <EntitySet Name="SendEmailAddresses" EntityType="TestElectricityKobiModel.SendEmailAddress" />
         </EntityContainer>
         <EntityType Name="BillDocument">
           <Key>
@@ -143,6 +144,14 @@
           <Property Name="CustomerRequestId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="CustomerRequest" Relationship="TestElectricityKobiModel.FK__BillDocum__Custo__45F365D3" FromRole="BillDocument" ToRole="CustomerRequest" />
         </EntityType>
+        <EntityType Name="SendEmailAddress">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmailAddress" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="IsCC" Type="Boolean" />
+        </EntityType>
         <EntityType Name="CustomerRequest">
           <Key>
             <PropertyRef Name="Id" />
@@ -150,10 +159,11 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="CompanyName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="AverageElectricityBill" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
           <Property Name="SubscriberGroupId" Type="Int32" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="BillDocuments" Relationship="TestElectricityKobiModel.FK__BillDocum__Custo__45F365D3" FromRole="CustomerRequest" ToRole="BillDocument" />
           <NavigationProperty Name="SubscriberGroup" Relationship="TestElectricityKobiModel.FK__CustomerR__Subsc__4316F928" FromRole="CustomerRequest" ToRole="SubscriberGroup" />
         </EntityType>
@@ -181,14 +191,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="SendEmailAddress">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EmailAddress" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="IsCC" Type="Boolean" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -227,24 +229,25 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="SendEmailAddresses">
+            <EntityTypeMapping TypeName="TestElectricityKobiModel.SendEmailAddress">
+              <MappingFragment StoreEntitySet="SendEmailAddress">
+                <ScalarProperty Name="IsCC" ColumnName="IsCC" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="CustomerRequests">
             <EntityTypeMapping TypeName="TestElectricityKobiModel.CustomerRequest">
               <MappingFragment StoreEntitySet="CustomerRequest">
+                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="SubscriberGroupId" ColumnName="SubscriberGroupId" />
                 <ScalarProperty Name="AverageElectricityBill" ColumnName="AverageElectricityBill" />
                 <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
                 <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SendEmailAddresses">
-            <EntityTypeMapping TypeName="TestElectricityKobiModel.SendEmailAddress">
-              <MappingFragment StoreEntitySet="SendEmailAddress">
-                <ScalarProperty Name="IsCC" ColumnName="IsCC" />
-                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -186,6 +186,7 @@
     <Content Include="Content\scss\plugins\pageloader.css" />
     <Content Include="Content\scss\style.css" />
     <Content Include="Content\style.css" />
+    <Content Include="Content\sweetalert2.min.css" />
     <Content Include="Content\theme.css" />
     <Content Include="Content\webfonts\fa-brands-400.svg" />
     <Content Include="Content\webfonts\fa-regular-400.svg" />
@@ -327,6 +328,7 @@
     <Content Include="Content\webfonts\inspiro-icons.ttf" />
     <Content Include="Content\webfonts\inspiro-icons.woff" />
     <Content Include="Scripts\jquery.mask.min.js" />
+    <Content Include="Scripts\sweetalert2.min.js" />
     <Content Include="webfonts\fa-brands-400.svg" />
     <Content Include="webfonts\fa-regular-400.svg" />
     <Content Include="webfonts\fa-solid-900.svg" />
@@ -338,6 +340,7 @@
     <Content Include="DBContext\ElectricityModel.edmx.diagram">
       <DependentUpon>ElectricityModel.edmx</DependentUpon>
     </Content>
+    <Content Include="libman.json" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\custom.js" />
     <Content Include="Scripts\functions.js" />

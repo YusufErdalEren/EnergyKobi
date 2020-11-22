@@ -15,115 +15,13 @@
     <script src="~/Scripts/jquery.js"></script>
     <script src="~/Scripts/jquery.mask.min.js"></script>
 
-    <link href="~/Content/plugins.css" rel="stylesheet" />
-    <link href="~/Content/style.css" rel="stylesheet" />
     @*<link href="~/Scripts/plugins/fontawesome/css/fontawesome.min.css" rel="stylesheet" />*@
 
     <!-- CSS real-estate STYLE -->
-    <link href="~/Content/real-estate-style.css" rel="stylesheet" type="text/css" media="screen" />
-    <script src="~/Scripts/plugins.js"></script>
-    <script src="~/Scripts/functions.js"></script>
 
 </head>
 
 <body>
-
-    <div>
-        <header id="header" class="header-modern">
-            <div class="header-inner">
-                <div class="container">
-                    <!--Logo-->
-                    <div id="logo">
-                        <a href="/Home/Index">
-                            <span class="logo-default">EnerjiKobi</span>
-                            <span class="logo-dark">EnerjiKobi</span>
-                        </a>
-                    </div>
-                    <!--End: Logo-->
-                    <!--Header Extras-->
-                    @*<div class="header-extras" style="float:right;">
-                        @if (@Session["UserName"] != null)
-                        {
-                            <p>Hoşgeldin @Session["UserName"]</p>
-                        }
-                    </div>*@
-                    <!--end: Header Extras-->
-                    <!--Navigation Resposnive Trigger-->
-                    <div id="mainMenu-trigger">
-                        <button class="lines-button x"> <span class="lines"></span> </button>
-                    </div>
-                    <!--end: Navigation Resposnive Trigger-->
-                    <!--Navigation-->
-                    <div id="mainMenu" class="light">
-                        <div class="container">
-                            <nav>
-                                <ul>
-                                    @*<li><a href="Home/Index">Home</a></li>*@
-                                    @*<li class="dropdown"> <a href="#">Layout</a></li>
-                                    <li class="dropdown"> <a href="#">Features</a></li>
-                                    <li class="dropdown mega-menu-item"><a href="#">Elements</a> </li>
-                                    <li class="dropdown"> <a href="#">Pages</a></li>
-                                    <li class="dropdown mega-menu-item"> <a href="#">Portfolio</a></li>
-                                    <li class="dropdown mega-menu-item"> <a href="#">Blog</a></li>*@
-                                    @if (Session["UserName"] == null)
-                                    {
-                                        <li class="dropdown mega-menu-item"> <a href="~/Login/Login">Giriş</a></li>
-                                    }
-                                    else
-                                    {
-                                        <li class="dropdown mega-menu-item"> <a href="~/Login/Logout">Çıkış</a></li>
-                                    }
-                                    <li class="dropdown mega-menu-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-                                    <li class="dropdown mega-menu-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-                                    <li class="dropdown mega-menu-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-                                    <li class="dropdown mega-menu-item">
-                                        @if (@Session["UserName"] != null)
-                                        {
-                                            <span style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">Hoşgeldin @Session["UserName"]</span>
-                                        }
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                    <!--end: Navigation-->
-                </div>
-            </div>
-        </header>
-        <div id="slider" class="inspiro-slider dots-creative" data-height-xs="360" data-autoplay="2600" data-animate-in="fadeIn" data-animate-out="fadeOut" data-items="1" data-loop="true" data-autoplay="true">
-            <!-- Slide 1 -->
-            <div class="slide" style="background-image:url('/Images/1.jpg');">
-                <div class="container">
-                    <div class="slide-captions">
-                        <!-- Captions -->
-                        <h2 class="text-uppercase text-medium">Elektrik Faturanızda <br />%15 İndirim</h2>
-                        <p class="lead">
-                            Yüksek tüketiminizi tedarikçilerle sözleşmede<br /> avantaja çeviriyoruz.
-                            <!-- end: Captions -->
-                    </div>
-                </div>
-            </div>
-            <!-- end: Slide 1 -->
-            <!-- Slide 2 -->
-            <div class="slide" style="background-image: url('/Images/2.jpg');">
-                <div class="container">
-                    <div class="slide-captions">
-                        <!-- Captions -->
-                        <h2 class="text-uppercase text-medium no-margin">Tarife Danışmanlığı</h2>
-                        <br />
-                        <p class="lead">
-                            Tüketim profilinizi inceleyip en uygun tarifeyi belirliyoruz.
-                            <br />Faturalarınızda tasarruf sağlıyoruz
-                        </p>
-                        <!-- end: Captions -->
-                    </div>
-                </div>
-            </div>
-            <!-- end: Slide 2 -->
-        </div>
-        <!--end: Inspiro Slider -->
-
-    </div>
 
     <div>
         @RenderBody()

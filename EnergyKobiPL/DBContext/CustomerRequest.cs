@@ -27,6 +27,7 @@ namespace EnergyKobiPL.DBContext
         public string CompanyName { get; set; }
         public decimal AverageElectricityBill { get; set; }
         public int SubscriberGroupId { get; set; }
+        public string Email { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BillDocument> BillDocuments { get; set; }
