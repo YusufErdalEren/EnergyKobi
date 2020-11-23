@@ -45,50 +45,51 @@ namespace EnergyKobiPL.Controllers
 
                 db.CustomerRequests.Add(customerRequest);
                 db.SaveChanges();
+                TempData["IsModalOpen"] = "true";
 
-                var customerRequestId = customerRequest.Id;
+                //var customerRequestId = customerRequest.Id;
 
-                var fileList = new List<HttpPostedFileBase>();
-                fileList.Add(model.Attachment1);
-                fileList.Add(model.Attachment2);
+                //var fileList = new List<HttpPostedFileBase>();
+                //fileList.Add(model.Attachment1);
+                //fileList.Add(model.Attachment2);
 
-                foreach (var file in fileList)
-                {
-                    byte[] billDocumentBinary = null;
+                //foreach (var file in fileList)
+                //{
+                //    byte[] billDocumentBinary = null;
 
-                    if (file != null)
-                    {
-                        try
-                        {
-                            using (Stream inputStream = file.InputStream)
-                            {
-                                MemoryStream memoryStream = inputStream as MemoryStream;
-                                if (memoryStream == null)
-                                {
-                                    memoryStream = new MemoryStream();
-                                    inputStream.CopyTo(memoryStream);
-                                }
-                                billDocumentBinary = memoryStream.ToArray();
-                            }
+                //    if (file != null)
+                //    {
+                //        try
+                //        {
+                //            using (Stream inputStream = file.InputStream)
+                //            {
+                //                MemoryStream memoryStream = inputStream as MemoryStream;
+                //                if (memoryStream == null)
+                //                {
+                //                    memoryStream = new MemoryStream();
+                //                    inputStream.CopyTo(memoryStream);
+                //                }
+                //                billDocumentBinary = memoryStream.ToArray();
+                //            }
 
-                            db.BillDocuments.Add(new BillDocument { FileName = file.FileName, FileBinary = billDocumentBinary, CustomerRequestId = customerRequestId });
-                            db.SaveChanges();
-                            TempData["IsModalOpen"] = "true";
-                        }
-                        catch (Exception ex)
-                        {
-                            return RedirectToAction("Index", "Home");
-                        }
-                    }
-                }
+                //            db.BillDocuments.Add(new BillDocument { FileName = file.FileName, FileBinary = billDocumentBinary, CustomerRequestId = customerRequestId });
+                //            db.SaveChanges();
+                //            TempData["IsModalOpen"] = "true";
+                //        }
+                //        catch (Exception ex)
+                //        {
+                //            return RedirectToAction("Index", "Home");
+                //        }
+                //    }
+                //}
 
-                SendMail(phoneNumber, model.Email, model.Attachment1.InputStream, model.Attachment1.FileName, model.Attachment2.InputStream, model.Attachment2.FileName);
+                SendMail(phoneNumber, model.Email, null, string.Empty, null, string.Empty);
 
                 return RedirectToAction("Index", "Home");
             }
         }
 
-        private void SendMail(string phoneNumber, string emailAddress, Stream file1, string file1Name, Stream file2, string file2Name)
+        private void SendMail(string phoneNumber, string emailAddress, Stream file1 = null, string file1Name = "", Stream file2 = null, string file2Name = "")
         {
             SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587);
 
@@ -98,15 +99,15 @@ namespace EnergyKobiPL.Controllers
 
             MailMessage mail = new MailMessage();
 
-            mail.Subject = "Yeni müşteri talebi"; // mail konusu yazılır
+            mail.Subject = "Yeni Müşteri Talebi"; // mail konusu yazılır
             var bodyString = new StringBuilder();
             bodyString.Append(string.IsNullOrWhiteSpace(phoneNumber) ? string.Empty : $"{DateTime.Now} tarihinde iletişim bilgisi Phone Number: {phoneNumber} ");
             bodyString.Append(string.IsNullOrWhiteSpace(emailAddress) ? string.Empty : string.IsNullOrWhiteSpace(phoneNumber) ? $"{DateTime.Now} tarihinde iletişim bilgisi EmailAddress: {emailAddress} " : $"EmailAddress: { emailAddress} ");
             bodyString.Append("olan müşteri talebi oluşmuştur.");
-            bodyString.Append("Fatura bilgileri ek'te yer almaktadır.");
+            //bodyString.Append("Fatura bilgileri ek'te yer almaktadır.");
             mail.Body = bodyString.ToString();
-            mail.Attachments.Add(new Attachment(file1, file1Name));
-            mail.Attachments.Add(new Attachment(file2, file2Name));
+            //mail.Attachments.Add(new Attachment(file1, file1Name));
+            //mail.Attachments.Add(new Attachment(file2, file2Name));
             mail.From = new MailAddress("homeelectrictestuser@gmail.com", "EnergyKobi"); // display ismi yazılır
 
             TestElectricityKobiEntities db = new TestElectricityKobiEntities();

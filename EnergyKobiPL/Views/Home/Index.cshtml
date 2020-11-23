@@ -3,140 +3,42 @@
 }
 
 <style>
-    #overlay{
-  position: fixed;
-  top: 0;
-  z-index: 100;
-  width: 100%;
-  height:100%;
-  display: none;
-  background: rgba(0,0,0,0.6);
-}
-.cv-spinner {
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.spinner {
-  width: 40px;
-  height: 40px;
-  border: 4px #ddd solid;
-  border-top: 4px #2e93e6 solid;
-  border-radius: 50%;
-  animation: sp-anime 0.8s infinite linear;
-}
-@@keyframes sp-anime {
-  100% {
-    transform: rotate(360deg);
-  }
-}
-.is-hide{
-  display:none;
-}
+    #overlay {
+        position: fixed;
+        top: 0;
+        z-index: 100;
+        width: 100%;
+        height: 100%;
+        display: none;
+        background: rgba(0,0,0,0.6);
+    }
+
+    .cv-spinner {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .spinner {
+        width: 40px;
+        height: 40px;
+        border: 4px #ddd solid;
+        border-top: 4px #2e93e6 solid;
+        border-radius: 50%;
+        animation: sp-anime 0.8s infinite linear;
+    }
+
+    @@keyframes sp-anime {
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    .is-hide {
+        display: none;
+    }
 </style>
-
-<link href="~/Content/plugins.css" rel="stylesheet" />
-<link href="~/Content/style.css" rel="stylesheet" />
-<link href="~/Content/sweetalert2.min.css" rel="stylesheet" />
-<link href="~/Content/real-estate-style.css" rel="stylesheet" type="text/css" media="screen" />
-
-<div>
-    <header id="header" class="header-modern">
-        <div class="header-inner">
-            <div class="container">
-                <!--Logo-->
-                <div id="logo">
-                    <a href="/Home/Index">
-                        <span class="logo-default">EnerjiKobi</span>
-                        <span class="logo-dark">EnerjiKobi</span>
-                    </a>
-                </div>
-                <!--End: Logo-->
-                <!--Header Extras-->
-                @*<div class="header-extras" style="float:right;">
-                        @if (@Session["UserName"] != null)
-                        {
-                            <p>Hoşgeldin @Session["UserName"]</p>
-                        }
-                    </div>*@
-                <!--end: Header Extras-->
-                <!--Navigation Resposnive Trigger-->
-                <div id="mainMenu-trigger">
-                    <button class="lines-button x"> <span class="lines"></span> </button>
-                </div>
-                <!--end: Navigation Resposnive Trigger-->
-                <!--Navigation-->
-                <div id="mainMenu" class="light">
-                    <div class="container">
-                        <nav>
-                            <ul>
-                                @*<li><a href="Home/Index">Home</a></li>*@
-                                @*<li class="dropdown"> <a href="#">Layout</a></li>
-                                    <li class="dropdown"> <a href="#">Features</a></li>
-                                    <li class="dropdown mega-menu-item"><a href="#">Elements</a> </li>
-                                    <li class="dropdown"> <a href="#">Pages</a></li>
-                                    <li class="dropdown mega-menu-item"> <a href="#">Portfolio</a></li>
-                                    <li class="dropdown mega-menu-item"> <a href="#">Blog</a></li>*@
-                                @if (Session["UserName"] == null)
-                                {
-                                    <li class="dropdown mega-menu-item"> <a href="~/Login/Login">Giriş</a></li>
-                                }
-                                else
-                                {
-                                    <li class="dropdown mega-menu-item"> <a href="~/Login/Logout">Çıkış</a></li>
-                                }
-                                <li class="dropdown mega-menu-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-                                <li class="dropdown mega-menu-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-                                <li class="dropdown mega-menu-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-                                <li class="dropdown mega-menu-item">
-                                    @if (@Session["UserName"] != null)
-                                    {
-                                        <span style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">Hoşgeldin @Session["UserName"]</span>
-                                    }
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-                <!--end: Navigation-->
-            </div>
-        </div>
-    </header>
-    <div id="slider" class="inspiro-slider dots-creative" data-height-xs="360" data-autoplay="2600" data-animate-in="fadeIn" data-animate-out="fadeOut" data-items="1" data-loop="true" data-autoplay="true">
-        <!-- Slide 1 -->
-        <div class="slide" style="background-image:url('/Images/1.jpg');">
-            <div class="container">
-                <div class="slide-captions">
-                    <!-- Captions -->
-                    <h2 class="text-uppercase text-medium">Elektrik Faturanızda <br />%15 İndirim</h2>
-                    <p class="lead">
-                        Yüksek tüketiminizi tedarikçilerle sözleşmede<br /> avantaja çeviriyoruz.
-                        <!-- end: Captions -->
-                </div>
-            </div>
-        </div>
-        <!-- end: Slide 1 -->
-        <!-- Slide 2 -->
-        <div class="slide" style="background-image: url('/Images/2.jpg');">
-            <div class="container">
-                <div class="slide-captions">
-                    <!-- Captions -->
-                    <h2 class="text-uppercase text-medium no-margin">Tarife Danışmanlığı</h2>
-                    <br />
-                    <p class="lead">
-                        Tüketim profilinizi inceleyip en uygun tarifeyi belirliyoruz.
-                        <br />Faturalarınızda tasarruf sağlıyoruz
-                    </p>
-                    <!-- end: Captions -->
-                </div>
-            </div>
-        </div>
-        <!-- end: Slide 2 -->
-    </div>
-    <!--end: Inspiro Slider -->
-
-</div>
 
 <!-- FORM -->
 <div class="background-grey">
@@ -191,7 +93,7 @@
                                         </select>
                                     </div>*@
                             </div>
-                            <div class="row">
+                            @*<div class="row">
                                 <div class="form-row">
                                     <div class="form-group">
                                         <label for="telephone">Son 2 Elektrik Faturanızın Resmini Yükleyiniz</label>
@@ -202,8 +104,7 @@
                                         </ul>
                                     </div>
                                 </div>
-
-                            </div>
+                            </div>*@
                             <div class="text-right">
                                 <button id="saveCustomerRequest" type="submit" class="btn btn-lg">Formu İlet</button>
                             </div>
@@ -384,7 +285,7 @@
                     <p>2016 yılında Bahçeşehir Üniversitesi Enerji Sistemleri Mühendisliğinden mezun olup İngiltere'nin yenilenebilir enerji dönüşüm projesinde gönüllü olarak yer almıştır. </p>
                     <p>Onlarca KOBİ'nin enerjide dijital dönüşümünde rol almaktadır.</p>
                     <div class="clear"></div>
-                    <a class="read-more" href="#">Name Karoğlu ile temasa geç!</a>
+                    <a class="read-more" href="#">Fahri Aydın ile temasa geç!</a>
 
 
                 </div>
@@ -465,10 +366,6 @@
     </div>
 </div>
 
-<script src="~/Scripts/plugins.js"></script>
-<script src="~/Scripts/functions.js"></script>
-<script src="~/Scripts/sweetalert2.min.js"></script>
-
 <script>
     $('#saveCustomerRequest').click(function (e) {
 
@@ -490,39 +387,39 @@
         //    $('#modalBody').html('Lütfen ortalama fatura tutarını giriniz!');
         //    $('#warningModal').modal('show');
         //}
-        else if ($('input[name = Attachment1')[0] == undefined) {
-            e.preventDefault();
-            $('#modalBody').html('Lütfen fatura resmini yükleyiniz');
-            $("#overlay").hide();
-            $('#warningModal').modal('show');
-        }
-        else if ($('input[name = Attachment2')[0] == undefined) {
-            e.preventDefault();
-            $('#modalBody').html('Lütfen 2. fatura resmini yükleyiniz');
-            $("#overlay").hide();
-            $('#warningModal').modal('show');
-        }
+        //else if ($('input[name = Attachment1')[0] == undefined) {
+        //    e.preventDefault();
+        //    $('#modalBody').html('Lütfen fatura resmini yükleyiniz');
+        //    $("#overlay").hide();
+        //    $('#warningModal').modal('show');
+        //}
+        //else if ($('input[name = Attachment2')[0] == undefined) {
+        //    e.preventDefault();
+        //    $('#modalBody').html('Lütfen 2. fatura resmini yükleyiniz');
+        //    $("#overlay").hide();
+        //    $('#warningModal').modal('show');
+        //}
     })
 
-    $('form button.add').click(function (e) {
-        e.preventDefault();
-        var nb_attachments = $('input[type=file]').length + 1;
-        var $input = $('<input type="file" name=Attachment' + nb_attachments + '>');
-        $input.on('change', function (evt) {
-            var f = evt.target.files[0];
-            $('form').append($(this));
-            $('ul.list').append('<li id="lifile' + nb_attachments + '"' + 'class="item">' + f.name + '(' + f.size + ')&nbsp;<span id="removeFile' + nb_attachments + '"' + 'class="badge badge-danger">Remove</span></li>');
-        });
-        $input.hide();
-        $input.trigger('click');
-    });
+    //$('form button.add').click(function (e) {
+    //    e.preventDefault();
+    //    var nb_attachments = $('input[type=file]').length + 1;
+    //    var $input = $('<input type="file" name=Attachment' + nb_attachments + '>');
+    //    $input.on('change', function (evt) {
+    //        var f = evt.target.files[0];
+    //        $('form').append($(this));
+    //        $('ul.list').append('<li id="lifile' + nb_attachments + '"' + 'class="item">' + f.name + '(' + f.size + ')&nbsp;<span id="removeFile' + nb_attachments + '"' + 'class="badge badge-danger">Remove</span></li>');
+    //    });
+    //    $input.hide();
+    //    $input.trigger('click');
+    //});
 
-    $(document).on('click', '.badge-danger', function () {
-        var id = $(this)[0].id;
-        var order = id.split('removeFile')[1];
-        $('#lifile' + order).remove();
-        $('input[name = Attachment' + order + ']').remove();
-    });
+    //$(document).on('click', '.badge-danger', function () {
+    //    var id = $(this)[0].id;
+    //    var order = id.split('removeFile')[1];
+    //    $('#lifile' + order).remove();
+    //    $('input[name = Attachment' + order + ']').remove();
+    //});
 
     $("#PhoneNumber").mask("(999) 999-9999");
 
